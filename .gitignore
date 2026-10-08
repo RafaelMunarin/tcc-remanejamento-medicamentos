@@ -1,0 +1,25 @@
+# Ambiente e arquivos temporários
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+*.log
+
+# Configurações locais
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Resultados gerados durante as execuções
+/resultados_modelo_final/
+/referencia_reprodutibilidade.json
+*.zip
+
+# As planilhas, o notebook e .streamlit/config.toml entram no repositório.
