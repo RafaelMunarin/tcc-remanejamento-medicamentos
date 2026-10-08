@@ -1,6 +1,6 @@
 # Modelo de remanejamento de medicamentos
 
-Projeto do TCC de Rafael Munarin. A ideia é analisar o estoque de medicamentos das UBS e mostrar:
+Este projeto faz parte do meu TCC. A ideia é analisar o estoque de medicamentos das UBS e mostrar:
 
 - quais lotes podem vencer;
 - quais unidades podem receber parte desse estoque;
