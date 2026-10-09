@@ -1,6 +1,6 @@
 # Modelo de remanejamento de medicamentos
 
-Este projeto faz parte do meu TCC. A ideia é analisar o estoque de medicamentos das UBS e mostrar:
+A ideia é analisar o estoque de medicamentos das UBS e mostrar:
 
 * quais lotes podem vencer;
 * quais unidades podem receber parte desse estoque;
@@ -10,31 +10,12 @@ O modelo usa regras fixas de consumo médio mensal, PVPS e capacidade de absorç
 
 Os dados de validade e de consumo usados no experimento são gerados pelo próprio código. A base de estoque e o cadastro das unidades ficam na pasta `dados`.
 
-## Arquivos principais
-
-* `app.py`: interface do Streamlit.
-* `modelo.py`: regras usadas pela interface.
-* `modelo\_remanejamento\_tcc\_rafael.ipynb`: notebook usado no Google Colab.
-* `dados/`: planilhas usadas no experimento.
-* `iniciar\_streamlit.bat`: inicia a interface no Windows.
-* `requirements.txt`: versões das bibliotecas.
-* `verificar\_integracao.py`: confere a ligação entre o notebook e a interface.
-
-## Requisitos
-
-* Windows 10 ou 11.
-* Python 3.12.
-* Git.
-* Internet na primeira execução, para instalar as bibliotecas.
-
 ## 1\. Clonar o projeto
 
-Abra o CMD e escolha a pasta onde deseja guardar o projeto. Este exemplo usa a pasta TCC do OneDrive:
+Abra o CMD e escolha a pasta onde deseja guardar o projeto.
 
 ```cmd
-cd /d "%USERPROFILE%\\OneDrive\\Documentos\\TCC"
 git clone https://github.com/RafaelMunarin/tcc-remanejamento-medicamentos.git
-cd /d "%USERPROFILE%\\OneDrive\\Documentos\\TCC\\tcc-remanejamento-medicamentos"
 ```
 
 Se a sua pasta for diferente, altere apenas os comandos `cd`.
@@ -95,14 +76,3 @@ O cálculo considera a rede inteira, mesmo quando um filtro está ativo. As alte
 3. Quando o notebook pedir, envie `dados/CNES.xlsx` e `dados/Consulta de Estoque.xlsx`.
 
 O notebook contém o desenvolvimento das regras e os testes dos cenários. Não é necessário instalar o Streamlit para usar o notebook.
-
-## 7\. Conferir a integração
-
-Depois de instalar as bibliotecas, execute na pasta do projeto:
-
-```cmd
-.venv\\Scripts\\python.exe verificar\_integracao.py
-```
-
-Esse comando compara as tabelas geradas pelo notebook com as tabelas usadas na interface.
-
