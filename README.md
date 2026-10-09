@@ -41,7 +41,7 @@ O Python deve aparecer como `Python 3.12.x`. Se `python` ou `git` não for recon
 Dentro da pasta do projeto, execute:
 
 ```cmd
-iniciar\_streamlit.bat
+iniciar_streamlit.bat
 ```
 
 Na primeira vez, o arquivo cria o ambiente virtual e instala as bibliotecas. Depois, ele abre a interface no navegador. Deixe o CMD aberto enquanto usar o sistema.
@@ -71,7 +71,7 @@ O cálculo considera a rede inteira, mesmo quando um filtro está ativo. As alte
 
 ## 6\. Abrir o notebook no Google Colab
 
-1. Abra `modelo\_remanejamento\_tcc\_rafael.ipynb` no Google Colab.
+1. Abra `modelo_remanejamento_tcc_rafael.ipynb` no Google Colab.
 2. Execute as células na ordem.
 3. Quando o notebook pedir, envie `dados/CNES.xlsx` e `dados/Consulta de Estoque.xlsx`.
 
