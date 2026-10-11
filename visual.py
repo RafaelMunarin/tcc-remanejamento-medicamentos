@@ -33,51 +33,49 @@ def numero(valor, casas=0):
     return f'{valor:,.{casas}f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
 
 
-def cabecalho(titulo, descricao):
-    st.title(titulo)
-    st.markdown(f'<p class="page-description">{texto(descricao)}</p>',unsafe_allow_html=True)
-
-
 def resumo(itens):
     for coluna, (rotulo, valor) in zip(st.columns(len(itens)), itens):
         coluna.metric(rotulo, numero(valor))
 
 
 def lote_card(lote):
-    risco=float(lote.risco)
-    classe='attention' if risco>1e-8 else 'calm'
-    estado='RISCO POTENCIAL' if risco>1e-8 else 'SEM RISCO NESTE CÁLCULO'
     st.markdown(f'''
 <div class="lot-card">
-  <div class="lot-main"><span class="tag {classe}">{estado}</span>
+  <div class="lot-main">
     <h3>{texto(lote.medicamento)}</h3><p>{texto(lote.unidade)} · lote {texto(lote.lote)}</p>
-    <div class="pills"><span>Validade {lote.validade:%d/%m/%Y}</span>
-      <span>{numero(lote.dias_ate_validade)} dias</span><span>CMM {numero(lote.cmm,2)}</span></div>
+    <small>Validade simulada: {lote.validade:%d/%m/%Y}</small>
   </div>
-  <div class="lot-amount"><strong>{numero(risco,2)}</strong><span>unidades em risco</span>
+  <div class="lot-amount"><strong>{numero(lote.risco,2)}</strong><span>unidades em risco</span>
     <small>de {numero(lote.quantidade,2)} em estoque</small></div>
 </div>''',unsafe_allow_html=True)
 
 
-def destino_indicado(unidade, quantidade, justificativa, risco, capacidade):
+def destinos_card(classificacao):
+    primeira = classificacao.iloc[0]
     st.markdown(f'''
-<div class="recommended-card">
-  <span class="recommended-tag">✓ DESTINO INDICADO NESTA ETAPA</span>
-  <div class="recommended-content"><div><p class="overline">A melhor opção pelas regras do modelo é</p>
-    <h2>{texto(unidade)}</h2><p class="reason">{texto(justificativa)}</p></div>
-    <div class="recommended-amount"><strong>{numero(quantidade)}</strong><span>unidades sugeridas</span></div>
+<div class="destination-primary">
+  <span class="destination-rank">1ª opção - destino sugerido</span>
+  <div class="destination-content">
+    <h3>{texto(primeira.destino)}</h3>
+    <div class="destination-amount"><strong>{numero(primeira.quantidade_admissivel)}</strong>
+      <span>unidades sugeridas</span></div>
   </div>
-  <div class="recommended-footer"><span>Risco do lote nesta etapa: <b>{numero(risco,2)}</b></span>
-    <span>Capacidade sem novo risco: <b>{numero(capacidade,2)}</b></span></div>
-</div>''',unsafe_allow_html=True)
+</div>''', unsafe_allow_html=True)
 
-
-def alternativa_card(unidade, quantidade, capacidade, motivo):
-    st.markdown(f'''
-<div class="alternative-card"><span class="eyebrow">OUTRA POSSIBILIDADE</span>
-<h3>{texto(unidade)}</h3><p class="alternative-amount">{numero(quantidade)} <span>unidades</span></p>
-<p>Capacidade sem novo risco: <b>{numero(capacidade,2)}</b></p>
-<div class="alternative-reason">{texto(motivo)}</div></div>''',unsafe_allow_html=True)
+    outras = classificacao.iloc[1:4]
+    if not outras.empty:
+        for posicao, (coluna, opcao) in enumerate(
+            zip(st.columns(3), outras.itertuples(index=False)), start=2,
+        ):
+            with coluna:
+                st.markdown(f'''
+<div class="destination-alternative">
+  <span class="destination-rank">{posicao}ª opção</span>
+  <h3>{texto(opcao.destino)}</h3>
+  <div class="destination-amount"><strong>{numero(opcao.quantidade_admissivel)}</strong>
+    <span>unidades</span></div>
+</div>''', unsafe_allow_html=True)
+        st.caption('Alternativas para o mesmo envio. As quantidades não devem ser somadas.')
 
 
 def tabela(dados, colunas, inteiros=(), decimais=(), altura=340):
