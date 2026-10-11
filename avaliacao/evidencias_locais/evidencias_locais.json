@@ -1,0 +1,356 @@
+{
+  "ambiente": "LOCAL; não comprova execução no Colab",
+  "tempo_segundos": 74.9,
+  "cenarios": [
+    {
+      "cenario": "C1",
+      "condicao": "Ausência de risco",
+      "campos_comparados": 5,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "C2",
+      "condicao": "Risco de vencimento",
+      "campos_comparados": 5,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "C3",
+      "condicao": "Risco sem possibilidade de remanejamento",
+      "campos_comparados": 6,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "C4",
+      "condicao": "Risco com uma unidade candidata",
+      "campos_comparados": 6,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "C5",
+      "condicao": "Múltiplas unidades candidatas",
+      "campos_comparados": 7,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "C6",
+      "condicao": "Múltiplos lotes e PVPS",
+      "campos_comparados": 7,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "C7",
+      "condicao": "Ausência de estoque com consumo",
+      "campos_comparados": 4,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "C8",
+      "condicao": "Estoque sem consumo de referência",
+      "campos_comparados": 6,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "B1",
+      "condicao": "Capacidade exatamente igual à quantidade em risco",
+      "campos_comparados": 4,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "B2",
+      "condicao": "Empate de validade entre lotes",
+      "campos_comparados": 7,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "B3",
+      "condicao": "Validade muito curta: um dia",
+      "campos_comparados": 4,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "B4",
+      "condicao": "Candidata com estoque superior à capacidade",
+      "campos_comparados": 5,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "B5",
+      "condicao": "Candidata com CMM zero",
+      "campos_comparados": 5,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "B6",
+      "condicao": "Recebimento deslocaria risco para lote posterior",
+      "campos_comparados": 5,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "B7",
+      "condicao": "Duas origens disputam a mesma capacidade",
+      "campos_comparados": 5,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "B8",
+      "condicao": "Risco fracionário e quantidade inteira",
+      "campos_comparados": 5,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "B9",
+      "condicao": "Validade na data de referência",
+      "campos_comparados": 4,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    },
+    {
+      "cenario": "B10",
+      "condicao": "Empate entre unidades candidatas",
+      "campos_comparados": 4,
+      "divergencias": 0,
+      "invariantes_conformes": true,
+      "conforme": true
+    }
+  ],
+  "invariantes": [
+    {
+      "regra": "Risco entre zero e saldo do lote",
+      "registros_verificados": 3846,
+      "conforme": true
+    },
+    {
+      "regra": "Consumível + risco = saldo",
+      "registros_verificados": 3846,
+      "conforme": true
+    },
+    {
+      "regra": "Ordem PVPS por validade e ID",
+      "registros_verificados": 1916,
+      "conforme": true
+    },
+    {
+      "regra": "Capacidade não duplicada entre lotes do grupo",
+      "registros_verificados": 1916,
+      "conforme": true
+    },
+    {
+      "regra": "capacidade_livre não negativa",
+      "registros_verificados": 19168,
+      "conforme": true
+    },
+    {
+      "regra": "capacidade_sem_novo_risco não negativa",
+      "registros_verificados": 19168,
+      "conforme": true
+    },
+    {
+      "regra": "quantidade_admissivel não negativa",
+      "registros_verificados": 19168,
+      "conforme": true
+    },
+    {
+      "regra": "Origem diferente de toda candidata",
+      "registros_verificados": 19168,
+      "conforme": true
+    },
+    {
+      "regra": "Conservação por medicamento após plano",
+      "registros_verificados": 161,
+      "conforme": true
+    },
+    {
+      "regra": "Saldo final não negativo",
+      "registros_verificados": 4922,
+      "conforme": true
+    },
+    {
+      "regra": "Movimentos inteiros positivos",
+      "registros_verificados": 1076,
+      "conforme": true
+    },
+    {
+      "regra": "Quantidade enviada não supera o risco disponível",
+      "registros_verificados": 1076,
+      "conforme": true
+    },
+    {
+      "regra": "Consumo da origem preservado em cada movimento",
+      "registros_verificados": 1076,
+      "conforme": true
+    },
+    {
+      "regra": "Risco do destino não aumenta em cada movimento",
+      "registros_verificados": 1076,
+      "conforme": true
+    },
+    {
+      "regra": "Cada lote recebido possui um único ID",
+      "registros_verificados": 1076,
+      "conforme": true
+    },
+    {
+      "regra": "Saldo final corresponde aos débitos e créditos",
+      "registros_verificados": 4922,
+      "conforme": true
+    },
+    {
+      "regra": "Capacidade final não duplicada após todos os recebimentos",
+      "registros_verificados": 4922,
+      "conforme": true
+    }
+  ],
+  "reprodutibilidade": [
+    {
+      "tabela": "estoque",
+      "situacao": "SESSAO_DISTINTA",
+      "resultado_identico": true,
+      "sha256": "defeae3f92e0b15630aa686c229ef6a82f61ecac6e9f3f389032991c0c5df2af"
+    },
+    {
+      "tabela": "historico",
+      "situacao": "SESSAO_DISTINTA",
+      "resultado_identico": true,
+      "sha256": "0199791130c9c28446424d7735f56c72b377ec6ceffcb5f6be009923c2af953f"
+    },
+    {
+      "tabela": "medias",
+      "situacao": "SESSAO_DISTINTA",
+      "resultado_identico": true,
+      "sha256": "c9b896de546fcb72058c916ae8528f8d72f7d5114b7f4f3904818014c2e9ce01"
+    },
+    {
+      "tabela": "diagnostico",
+      "situacao": "SESSAO_DISTINTA",
+      "resultado_identico": true,
+      "sha256": "455c049517ab8a317c08e12ad10e3971f361fad11e99b6ffe64c0e55a056ed27"
+    },
+    {
+      "tabela": "combinacoes",
+      "situacao": "SESSAO_DISTINTA",
+      "resultado_identico": true,
+      "sha256": "148fd54c2eaf21cdcc2b0511b4624de438a8c356c3c845cf7710b711fbd50ded"
+    },
+    {
+      "tabela": "candidatas",
+      "situacao": "SESSAO_DISTINTA",
+      "resultado_identico": true,
+      "sha256": "c9401c4c5315d63f9d0559e07a62ff6826f94f11fb76d8f1c65ad89c029ab197"
+    },
+    {
+      "tabela": "plano",
+      "situacao": "SESSAO_DISTINTA",
+      "resultado_identico": true,
+      "sha256": "320c4423307f8c5b5bd31e5d30624b0b05fd43af672b12bddd9de98fc6117267"
+    },
+    {
+      "tabela": "final",
+      "situacao": "SESSAO_DISTINTA",
+      "resultado_identico": true,
+      "sha256": "e8e1bae1a31aa9e3c0bc877201ecfc854b1dd6b221f732cf6d91c98b9c71196c"
+    },
+    {
+      "tabela": "alternativas",
+      "situacao": "SESSAO_DISTINTA",
+      "resultado_identico": true,
+      "sha256": "d49dcc591413884f1eb1291b07c39e9140b65282a53f6c0a7852f08610818cdb"
+    }
+  ],
+  "limites_grade": [
+    {
+      "indicador": "Combinações na grade",
+      "quantidade": 2737
+    },
+    {
+      "indicador": "Combinações sem registro de estoque",
+      "quantidade": 821
+    },
+    {
+      "indicador": "Sem registro de estoque e com CMM positivo",
+      "quantidade": 688
+    },
+    {
+      "indicador": "Movimentos no plano principal",
+      "quantidade": 1076
+    },
+    {
+      "indicador": "Movimentos para destinos sem registro do item",
+      "quantidade": 141
+    }
+  ],
+  "sensibilidade_destinos": [
+    {
+      "regra": "PRINCIPAL",
+      "movimentos": 1076,
+      "lotes_com_sugestao": 797,
+      "pares_iniciais_admissiveis": 10234,
+      "movimentos_sem_registro": 141
+    },
+    {
+      "regra": "SOMENTE_COM_REGISTRO",
+      "movimentos": 1045,
+      "lotes_com_sugestao": 783,
+      "pares_iniciais_admissiveis": 8711,
+      "movimentos_sem_registro": 0
+    }
+  ],
+  "comparacao_planilha": {
+    "comparado_em_utc": "2026-10-11T20:33:27.686103+00:00",
+    "ambiente_informado": "local",
+    "esperados_sha256": "04564657f68dc18cac40fc864403de9e85123b352517509a8bd02c3bc0e54b32",
+    "coincidiram": 263,
+    "total": 263,
+    "divergencias": 0,
+    "nove_tabelas_identicas_em_sessoes_distintas": true,
+    "revisao_humana": "PENDENTE",
+    "limite": "Comparação automatizada de apoio; não comprova revisão humana. O ambiente informado não é detectado pelo script."
+  },
+  "integracao_streamlit": [
+    "Tabela idêntica: estoque",
+    "Tabela idêntica: historico",
+    "Tabela idêntica: medias",
+    "Tabela idêntica: diagnostico",
+    "Tabela idêntica: combinacoes",
+    "Tabela idêntica: candidatas",
+    "Tabela idêntica: plano",
+    "Tabela idêntica: final",
+    "Tabela idêntica: alternativas",
+    "18 cenários conformes; 17 invariantes conformes.",
+    "Integração verificada: as nove tabelas são idênticas às do notebook."
+  ],
+  "modelo_py_sha256": "6a6517040218ff0b16b1cf3419850eb2524891d6e0cfdcf95c993a17e25c8e6a"
+}

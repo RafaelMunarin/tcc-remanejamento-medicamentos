@@ -1,0 +1,82 @@
+{
+  "registrado_em_utc": "2026-10-11T15:54:13.868464+00:00",
+  "fontes_sha256": {
+    "estoque_preparado.csv": "78e6bc53f209996bd5a7d2fc775af0bc083b79b0bf6423a296622f7d1d9dea91",
+    "historico_sintetico.csv": "7e27422fcd4217831da550ad9a2402c3abf6d222d3a6368407adfdb7d2ef93df"
+  },
+  "referencia": "2026-06-09",
+  "dias_mes": 30.0,
+  "tolerancia": 1e-08,
+  "criterio_geral": "Amostra intencional por estrutura das entradas; sem representatividade estatística.",
+  "diagnostico": [
+    {
+      "id_unidade": 3,
+      "id_medicamento": 5,
+      "criterio": "Maior número de lotes; desempate pelos IDs"
+    },
+    {
+      "id_unidade": 12,
+      "id_medicamento": 111,
+      "criterio": "Menor validade; desempate pelos IDs"
+    },
+    {
+      "id_unidade": 1,
+      "id_medicamento": 97,
+      "criterio": "Primeiro grupo com empate de validade"
+    },
+    {
+      "id_unidade": 1,
+      "id_medicamento": 6,
+      "criterio": "Primeiro grupo com estoque e consumo zero"
+    },
+    {
+      "id_unidade": 1,
+      "id_medicamento": 8,
+      "criterio": "Primeiro grupo sem estoque e com consumo"
+    },
+    {
+      "id_unidade": 1,
+      "id_medicamento": 5,
+      "criterio": "Primeiro grupo sem estoque e sem consumo"
+    },
+    {
+      "id_unidade": 11,
+      "id_medicamento": 66,
+      "criterio": "Grupo com estoque do medicamento escolhido para o plano completo"
+    },
+    {
+      "id_unidade": 7,
+      "id_medicamento": 66,
+      "criterio": "Grupo com estoque do medicamento escolhido para o plano completo"
+    }
+  ],
+  "capacidade": {
+    "id_lote_origem": 2183,
+    "destinos": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "estado": "inicial"
+  },
+  "plano": {
+    "id_medicamento": 66,
+    "criterio": "Menor número de lotes e depois de unidades, com pelo menos duas unidades com estoque e uma com CMM zero; desempate pelo ID."
+  },
+  "ordem_da_conferencia": "Registrar seleção; calcular em planilha a partir das entradas; preservar esperado; depois comparar com saídas.",
+  "limite_de_independencia": "O assistente já teve acesso ao notebook e às saídas gerais. Esta seleção usa apenas entradas e antecede a comparação desta amostra, mas não constitui avaliação cega nem revisão humana independente.",
+  "revisao_humana": "PENDENTE"
+}

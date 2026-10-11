@@ -1,0 +1,10 @@
+﻿cenario,fator_alterado,valor,lotes_em_risco,lotes_com_candidata,lotes_sem_candidata,pares_lote_destino,movimentos,risco_entraram,risco_sairam,candidatas_entraram,candidatas_sairam,consumo_zero_observado,regras_conformes
+BASE,nenhum,{},1198,1166,32,10234,1076,0,0,0,0,417,True
+SAL_A,sal,"{""sal"": ""TCC_ESTOQUE_20260609_A""}",1230,1127,103,10500,1130,620,588,8227,7961,437,True
+SAL_B,sal,"{""sal"": ""TCC_ESTOQUE_20260609_B""}",1228,1170,58,11048,1239,629,599,8675,7861,415,True
+VALIDADE_CURTA,faixa de validade,"{""validade_min"": 15, ""validade_max"": 270}",1537,1325,212,11593,1455,394,55,3842,2483,417,True
+VALIDADE_LONGA,faixa de validade,"{""validade_min"": 60, ""validade_max"": 1080}",954,952,2,9937,984,47,291,1948,2245,417,True
+ZERO_0,percentual de consumo-base zero,"{""percentual_zero"": 0}",790,756,34,6045,715,0,408,841,5030,23,True
+ZERO_30,percentual de consumo-base zero,"{""percentual_zero"": 30}",1730,1698,32,13621,1471,532,0,5335,1948,860,True
+MES_28,dias por mês,"{""dias_mes"": 28.0}",1171,1140,31,10185,1075,0,27,156,205,417,True
+MES_31,dias por mês,"{""dias_mes"": 31.0}",1206,1177,29,10246,1082,8,0,101,89,417,True
