@@ -1,77 +1,39 @@
-# Protótipo de remanejamento de medicamentos
+# Modelo de apoio ao remanejamento de medicamentos
 
-Este projeto faz parte do meu TCC. A ideia é ter uma interface simples para consultar o resultado do modelo de apoio ao remanejamento de medicamentos entre UBS.
+Este repositório reúne o desenvolvimento do meu TCC em Sistemas de Informação na UNIDAVI, intitulado **Modelo baseado em dados para apoio à análise do remanejamento de medicamentos em Unidades Básicas de Saúde**. O projeto identifica lotes com risco de vencimento e calcula possibilidades de remanejamento entre unidades, com uma interface local para consultar os resultados.
 
-Separei a interface em três telas:
+O modelo usa regras determinísticas de consumo médio mensal, alocação PVPS (Primeiro que Vence, Primeiro que Sai) e capacidade do destino. A heurística gulosa escolhe a maior quantidade admissível e atualiza os saldos após cada sugestão, preservando o estoque utilizável na origem e a capacidade sem novo risco no destino. A ordem das escolhas pode afetar o plano, sem garantia de melhor solução global.
 
-- **Importação**: envio da planilha e consulta do estoque;
-- **Diagnóstico**: lotes em risco, com filtros por unidade e medicamento;
-- **Destinos**: primeira opção em destaque e até três alternativas, com unidade e quantidade.
+O experimento considera 17 unidades, 161 medicamentos e 3.846 lotes analíticos. O cadastro e o saldo vêm das planilhas preservadas em `dados/`; as validades e as saídas mensais são sintéticas. A posição de referência é 09/06/2026, com seis meses de consumo sintético, de dezembro de 2025 a maio de 2026. O projeto não usa aprendizado de máquina e as sugestões dependem da avaliação do responsável antes de qualquer transferência.
 
-O modelo usa regras fixas de consumo médio mensal, PVPS e capacidade de absorção. Ele não usa aprendizado de máquina, não faz previsão e não realiza transferências sozinho.
+## Organização do repositório
 
-## Arquivos principais
+| Arquivo ou pasta | Conteúdo |
+| --- | --- |
+| [modelo_remanejamento_tcc_rafael.ipynb](modelo_remanejamento_tcc_rafael.ipynb) | Desenvolvimento do modelo, cálculos e avaliação no Google Colab |
+| [app.py](app.py) | Interface local em Streamlit |
+| [modelo.py](modelo.py) | Regras de cálculo usadas pela interface |
+| [visual.py](visual.py) e [estilo.css](estilo.css) | Apresentação das informações na interface |
+| [dados](dados/) | Planilhas de entrada preservadas para o experimento |
+| [avaliacao/LEIA_ME.md](avaliacao/LEIA_ME.md) | Procedimentos, resultados e limites das verificações |
+| [avaliacao/validacao_manual](avaliacao/validacao_manual/) | Planilhas preenchidas da conferência manual, identificação dos arquivos e hashes |
+| [verificar_integracao.py](verificar_integracao.py) | Comparação entre as tabelas do notebook e do núcleo da interface |
+| [iniciar_streamlit.bat](iniciar_streamlit.bat) | Inicialização da interface no Windows |
+| [requirements.txt](requirements.txt) | Versões das bibliotecas usadas pela aplicação |
 
-- `app.py`: interface do Streamlit.
-- `modelo.py`: regras usadas pela interface.
-- `modelo_remanejamento_tcc_rafael.ipynb`: notebook usado no Google Colab.
-- `dados/`: planilhas usadas no experimento.
-- `iniciar_streamlit.bat`: inicia a interface no Windows.
-- `requirements.txt`: versões das bibliotecas.
-- `verificar_integracao.py`: conferência rápida entre o notebook e a interface.
+## Execução local
 
-## Requisitos
-
-- Windows 10 ou 11.
-- Python 3.12.
-- Git.
-- Internet na primeira execução, para instalar as bibliotecas.
-
-## 1. Clonar o projeto
-
-Abra o CMD e escolha a pasta onde deseja guardar o projeto. Este exemplo usa a pasta TCC do OneDrive:
+A aplicação utiliza Windows 10 ou 11, Python 3.12 e Git. A primeira execução também precisa de acesso à internet para instalar as bibliotecas. A clonagem e a inicialização são feitas no CMD, a partir da pasta escolhida para o projeto:
 
 ```cmd
-cd /d "%USERPROFILE%\OneDrive\Documentos\TCC"
 git clone https://github.com/RafaelMunarin/tcc-remanejamento-medicamentos.git
-cd /d "%USERPROFILE%\OneDrive\Documentos\TCC\tcc-remanejamento-medicamentos"
-```
-
-Se a sua pasta for diferente, altere apenas os comandos `cd`.
-
-Para confirmar que o projeto foi clonado corretamente:
-
-```cmd
-git remote -v
-git status
-```
-
-## 2. Conferir Python e Git
-
-```cmd
-python --version
-git --version
-```
-
-O Python deve aparecer como `Python 3.12.x`. Se `python` ou `git` não for reconhecido, instale o programa e abra um novo CMD.
-
-## 3. Iniciar o Streamlit
-
-Dentro da pasta do projeto, execute:
-
-```cmd
+cd tcc-remanejamento-medicamentos
 iniciar_streamlit.bat
 ```
 
-Na primeira vez, o arquivo cria o ambiente virtual e instala as bibliotecas. Depois, ele abre a interface no navegador. Deixe o CMD aberto enquanto usar o sistema.
+O arquivo de inicialização cria o ambiente virtual em `%LOCALAPPDATA%\tcc-remanejamento-medicamentos\.venv`, instala as dependências e inicia o Streamlit. Mantive o ambiente fora da pasta do projeto para evitar bloqueios de sincronização do OneDrive. O CMD permanece aberto durante o uso; `Ctrl+C` encerra a aplicação. O endereço `Local URL`, exibido no terminal, permite abrir a interface quando o navegador não inicia automaticamente.
 
-O ambiente virtual é criado fora da pasta do projeto, em `%LOCALAPPDATA%\tcc-remanejamento-medicamentos\.venv`. Fiz assim para evitar bloqueios do OneDrive com a pasta `.venv`.
-
-Se o navegador não abrir, copie o endereço `Local URL` mostrado no CMD. Para parar a aplicação, pressione `Ctrl+C`.
-
-## 4. Executar sem o arquivo `.bat`
-
-Se precisar fazer cada etapa manualmente:
+A execução sem o arquivo `.bat` usa os mesmos caminhos:
 
 ```cmd
 python -m venv "%LOCALAPPDATA%\tcc-remanejamento-medicamentos\.venv"
@@ -79,40 +41,30 @@ python -m venv "%LOCALAPPDATA%\tcc-remanejamento-medicamentos\.venv"
 "%LOCALAPPDATA%\tcc-remanejamento-medicamentos\.venv\Scripts\python.exe" -m streamlit run app.py
 ```
 
-## 5. Usar a interface
+## Consulta pela interface
 
-1. Abra **Importação**.
-2. Envie `dados/Consulta de Estoque.xlsx`.
-3. Clique em **Importar planilha**. O arquivo `CNES.xlsx` é usado internamente.
-4. Confira a base pelos filtros.
-5. Abra **Diagnóstico** e clique em **Gerar diagnóstico**.
-6. Use os filtros para consultar os lotes e clique em **Ver destinos**.
-7. Escolha um lote para comparar os destinos. Se houver mais de um envio, selecione qual deseja consultar.
+Organizei a interface em três telas. Em **Importação**, o arquivo `dados/Consulta de Estoque.xlsx` é enviado e processado pelo botão **Importar planilha**, enquanto o cadastro `CNES.xlsx` é usado internamente. A base importada pode ser consultada pelos filtros disponíveis.
 
-O cálculo considera a rede inteira. Os filtros mudam apenas o que aparece na tela. Os cards comparam até quatro opções para o mesmo envio, na ordem definida pelo modelo. As quantidades das alternativas não devem ser somadas. As regras e as explicações do modelo ficam no notebook.
+Em **Diagnóstico**, o botão **Gerar diagnóstico** executa o cálculo para toda a rede. A consulta dos lotes permite acessar **Ver destinos**, onde aparecem a primeira opção e até três alternativas para o envio selecionado. Quando um lote participa de mais de um envio, cada movimento pode ser consultado separadamente.
 
-## 6. Abrir o notebook no Google Colab
+Os filtros alteram apenas a exibição. As alternativas representam possibilidades para o mesmo envio, por isso suas quantidades não são somadas. A geração do plano considera a capacidade já ocupada pelas sugestões anteriores.
 
-1. Abra `modelo_remanejamento_tcc_rafael.ipynb` no Google Colab.
-2. Execute as células na ordem.
-3. Quando o notebook pedir, envie `dados/CNES.xlsx` e `dados/Consulta de Estoque.xlsx`.
+## Notebook e integração
 
-O notebook contém o desenvolvimento das regras e os testes dos cenários. Não é necessário instalar o Streamlit para usar o notebook.
+O notebook é executado no Google Colab, com as células na ordem e envio de `dados/CNES.xlsx` e `dados/Consulta de Estoque.xlsx` quando solicitado. A cópia pública não contém saídas salvas. As seções de avaliação registram as regras verificadas e os resultados históricos, enquanto a seção 24.6 compara nove tabelas entre sessões distintas.
 
-## 7. Conferir a integração
-
-Depois de instalar as bibliotecas, execute na pasta do projeto:
+A última célula permite baixar `Resultados_Modelo_Final.zip` quando `BAIXAR_RESULTADOS = True`. O uso do notebook independe da instalação do Streamlit. No ambiente local, a integração é conferida com:
 
 ```cmd
 "%LOCALAPPDATA%\tcc-remanejamento-medicamentos\.venv\Scripts\python.exe" verificar_integracao.py
 ```
 
-Esse comando compara as tabelas geradas pelo notebook com as tabelas usadas na interface.
+## Resultados e limites
 
-## Observações
+No cenário principal, 1.198 lotes apresentaram risco, dos quais 797 receberam sugestão de remanejamento, em 1.076 movimentos. Os outros 401 lotes permaneceram sem sugestão. As verificações registradas abrangem oito cenários controlados, dez casos de borda, 17 invariantes e a reprodução das nove tabelas. A conferência manual de 21/10/2026 reúne 50 valores, com concordância dentro da tolerância decimal de 0,00000001 e igualdade exata nos identificadores e nas quantidades inteiras.
 
-- Os seis meses de consumo são a janela usada para calcular o CMM. Isso não significa que o diagnóstico precise ser executado somente a cada seis meses.
-- A validade e o consumo do experimento são sintéticos.
-- A interface é um protótipo acadêmico executado localmente com Streamlit.
-- O projeto não faz transferências automaticamente.
-- A ausência de estoque em uma data não prova que a unidade não usa o medicamento.
+A documentação da [avaliação](avaliacao/LEIA_ME.md) distingue essa conferência manual da comparação automatizada anterior de 263 campos. As [duas planilhas manuais](avaliacao/validacao_manual/) preservam o arquivo recebido e a cópia com a tolerância ajustada, sem alteração dos 50 valores preenchidos.
+
+Os resultados descrevem um experimento com validade e consumo sintéticos. O modelo não avalia transporte, armazenamento ou elegibilidade operacional, e a ausência de estoque em uma data não comprova que a unidade não utiliza o medicamento. A interface é um protótipo acadêmico, sem transferências automáticas ou importação mensal de movimentações reais.
+
+As regras de cálculo correspondem ao [commit 5944d16](https://github.com/RafaelMunarin/tcc-remanejamento-medicamentos/commit/5944d16c24f921a41d2d9df99c13f4ddf74fe065). O [commit 3357d60](https://github.com/RafaelMunarin/tcc-remanejamento-medicamentos/commit/3357d6069042bf19f50679d8772d2aba6a2dfc65) registra a atualização documental de 23/10/2026. A inclusão das planilhas e a revisão dos textos em 25/10/2026 preservam o código e as entradas desse experimento.
