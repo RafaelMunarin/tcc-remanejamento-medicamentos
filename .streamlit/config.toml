@@ -1,9 +1,12 @@
 [theme]
-base = "dark"
-primaryColor = "#398FE5"
-backgroundColor = "#0B1220"
-secondaryBackgroundColor = "#132237"
-textColor = "#E7EFFA"
+base = "light"
+primaryColor = "#2563EB"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F1F5F9"
+textColor = "#0F172A"
+borderColor = "#CBD5E1"
+dataframeBorderColor = "#CBD5E1"
+dataframeHeaderBackgroundColor = "#F1F5F9"
 font = "sans serif"
 
 [client]
